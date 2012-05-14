@@ -1,0 +1,1 @@
+This is a version of the bioviz application using Node.js for the server component, HTML5 for the UI.
