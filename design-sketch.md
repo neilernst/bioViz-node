@@ -6,4 +6,6 @@ This app will show a brain divided into regions. Each region will display the ex
 * SVG is the representation of the brain regions. 
 * JS for manipulating the SVG.
 
-## 
+## Useful links
+* https://github.com/developmentseed/node-sqlite3 - SQLite library
+* http://raphaeljs.com/ - JS library for SVG
