@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <title>Test SVG in  HAML/Sinatra</title>
+	<script type="text/javascript"> 
+	    function Highlight(evt) 
+	    { 
+	       evt.target.setAttribute("fill", "blue"); 
+	    } 
+	    function Unhighlight(evt) 
+	    { 
+	       evt.target.setAttribute("opacity", "0.4"); 
+	    } 
+	  </script>  
+</head>
+  <body>
+    <div class='example'>
+      <object data='brain-map.svg' height='500' type='image/svg+xml' width='550'></object>
+    </div>
+  </body>
+</html>
