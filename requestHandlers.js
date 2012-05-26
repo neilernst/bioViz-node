@@ -29,5 +29,9 @@ function upload(response, postData) {
   response.end();
 }
 
+function data(response, postData) {
+	console.log("Handling 'data'.");
+	
+}
 exports.start = start;
 exports.upload = upload;
