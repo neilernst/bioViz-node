@@ -1,5 +1,9 @@
 var querystring = require("querystring");
-	
+var static = require('node-static');
+var db = require("./sqlite3-test");
+
+var fileServer = new(static.Server)('./public');
+
 function start(response, postData) {
   console.log("Request handler 'start' was called.");
 
@@ -21,6 +25,11 @@ function start(response, postData) {
     response.end();
 }
 
+function autocomplete(response,postData) {
+	console.log("Autocomplete...");
+	fileServer.serveFile('/autocomplete-test.html', 200, {}, response, postData);
+}
+
 function upload(response, postData) {
   console.log("Request handler 'upload' was called.");
   response.writeHead(200, {"Content-Type": "text/plain"});
@@ -30,34 +39,13 @@ function upload(response, postData) {
 
 function data(response, postData) {
 	console.log("Handling 'data'.");
-	var mysql = require('mysql');
-	var TEST_DATABASE = 'bioViz';
-	var TEST_TABLE = 'genes';
-	var client = mysql.createClient({
-		user: 'root',
-		password: '',
-	});
-
-	client.query('USE '+TEST_DATABASE);
-
-	client.query(
-		'SELECT count(*) FROM '+TEST_TABLE,
-		function selectCb(err, results, fields) {
-			if (err) {
-				throw err;
-				response.writeHead(501);
-			}
-			response.writeHead(200, {"Content-Type": "text/plain"});
-
-			console.log(results);
-			console.log(fields);
-			client.end();
-			response.end();
-
-		}
-	);
+	db.fetchGenes("RP");
+	response.writeHead(200, {"Content-Type": "text/plain"});
+	response.end();
+	
 }
 
 exports.start = start;
 exports.upload = upload;
 exports.data = data;
+exports.autocomplete = autocomplete;

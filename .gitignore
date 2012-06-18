@@ -7,3 +7,6 @@ node_modules/.bin/
 bioviz.db
 node_modules/expresso node_modules/mysql node_modules/sqlite3
 node_modules/expresso/
+development-bundle/
+foo/node_modules
+node_modules

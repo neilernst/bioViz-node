@@ -7,7 +7,7 @@ This app will show a brain divided into regions. Each region will display the ex
 * JS for manipulating the SVG.
 
 ## Useful links
-* https://github.com/developmentseed/node-sqlite3 - SQLite library
+* https://github.com/developmentseed/node-sqlite3 - SQLite library https://github.com/developmentseed/node-sqlite3/wiki API
 * http://raphaeljs.com/ - JS library for SVG
 * https://github.com/felixge/node-mysql - MySQL driver
 * http://keith-wood.name/svgRef.html
