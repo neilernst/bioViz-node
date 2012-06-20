@@ -1,11 +1,10 @@
-
 /**
  * Module dependencies.
  */
 
 var express = require('express')
   , routes = require('./routes');
-var db = require("./sqlite3-test");
+var db = require("./get_data");
 var querystring = require("querystring");
 
 var app = module.exports = express.createServer();
@@ -40,11 +39,7 @@ app.get('/', function(req, res){
 
 app.get('/gene', function(req, res){
   console.log("Handling gene request");
-  db.fetchGenes(req.query.term); //Asynchronous!
-  res.send(data);
-  // res.render('data', {
-  //   title: 'Data'
-  // });
+  db.fetchGenes(req.query.term, req, res); //Asynchronous!
 });
 
 app.get('/autocomplete', function(req, res){
