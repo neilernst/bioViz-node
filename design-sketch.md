@@ -39,3 +39,9 @@ What is the MEL for RPL28 in BA89, chip 28?
 	SQLITE seems to have all the data from my brief check.
 	QUERY: 
 	select genes.known_gene_symbol, samples.mean_expression_level, regions.common_name from genes,samples, regions where genes.id = samples.gene_id and regions.id = samples.region_id and genes.known_gene_symbol = "DDX48" and regions.brodmann_code = 'Nucleus_accumbens';
+	
+	# June 18 
+	Using Stylus and Jade for output, with Express as web framework. 
+	Stylus compiles a .styl file into CSS. You refer to the CSS that gets compiled in the Jade file.
+	In Jade the layout.jade file is the 'main' function, that gets the value of variables. Typically 'body' variable gets the value of "page.jade".
+	
