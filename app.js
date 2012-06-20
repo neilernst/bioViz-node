@@ -39,7 +39,7 @@ app.get('/', function(req, res){
 
 app.get('/gene', function(req, res){
   console.log("Handling gene request");
-  db.fetchGenes(req.query.term, req, res); //Asynchronous!
+  db.fetchGenes(req.query.term,req, res); //Asynchronous!
 });
 
 app.get('/autocomplete', function(req, res){

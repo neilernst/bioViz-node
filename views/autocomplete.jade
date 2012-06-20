@@ -1,8 +1,11 @@
 html
 	script(src="javascripts/auto.js")
+	script(src="javascripts/brain.js")
 	body
-		div.demo
+		div#brain-img
+			object(data='images/brain-map.svg', height='400', type='image/svg+xml', width='550')
 		div.ui-widget
-			label Genes:
-			input#genes
-				placeholder "gene id"
+			form#gene_input
+				label Genes:
+				input#genes
+				input(type='submit', value='Display')
