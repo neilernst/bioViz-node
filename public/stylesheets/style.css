@@ -1,0 +1,10 @@
+body {
+  padding: 50px;
+  font: 14px/1.4 helvetica, arial, sans-serif;
+}
+.ui-autocomplete-loading {
+  background: #fff url("/images/ui-anim_basic_16x16.gif");
+right
+center
+no-repeat
+}
