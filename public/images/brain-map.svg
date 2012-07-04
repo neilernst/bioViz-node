@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="550px"
-	 height="400px" viewBox="0 0 550 400" enable-background="new 0 0 550 400" xml:space="preserve">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  > 
+	<!--width="550px" height="400px" id="brain-svg"> xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"  viewBox="0 0 550 400" enable-background="new 0 0 550 400" xml:space="preserve"-->
 	
-<g id="regions" onmouseover="top.Highlight(evt);" onmouseout="top.Unhighlight(evt);">
+<g id="regions" ><!--onmouseover="top.Highlight(evt);" onmouseout="top.Unhighlight(evt);">-->
 	
 	<g id="BA5">
-		<path fill-rule="evenodd" stroke="black" clip-rule="evenodd" fill="#FFFFFF"  stroke-miterlimit="10" d="M312.232,33.569l-5.275-2.364L307.256,31l-0.193,0.175c-3.033,2.467-6.719,4.367-10.588,5.7
+		<path fill-rule="evenodd" stroke="black" clip-rule="evenodd" fill="#FFFFFF"  stroke-miterlimit="10" 
+			d="M312.232,33.569l-5.275-2.364L307.256,31l-0.193,0.175c-3.033,2.467-6.719,4.367-10.588,5.7
 			c-5.266,1.667-9.199,3.067-11.799,4.2l-11.6,4.1c-3.601,1.267-6.317,2.65-8.15,4.15l-0.85,0.75l-3.3,2
 			c-1.9,1.2-3.534,2.733-4.9,4.6c-1.9,2.367-2.833,6.85-2.8,13.45c-0.033,1.034,4.717,5.15,14.25,12.35l0.184-0.116l-0.65-0.55
 			c4.033,0.066,9.766-3.033,17.2-9.3c7.201-6.233,10.801-11.083,10.801-14.55c0-1.6-2.633-2.6-7.9-3c-6.031-0.167-9.398-0.3-10.1-0.4
