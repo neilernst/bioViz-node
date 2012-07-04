@@ -1,11 +1,17 @@
 html
 	script(src="javascripts/auto.js")
 	script(src="javascripts/brain.js")
+	script(src="javascripts/jquery.svg.js")
+	<style type="text/css">@import "stylesheets/jquery.svg.css";</style> 
+	//script(type="text/javascript", src="javascripts/raphael-min.js")
+	//script(type="text/javascript", src="javascripts/jquery-1.7.2.min.js")
+
 	body
 		div#brain-img
-			object(data='images/brain-map.svg', height='400', type='image/svg+xml', width='550')
 		div.ui-widget
-			form#gene_input
+			form(action='/color',method='post')
 				label Genes:
-				input#genes
+				input(name='gene')#genes
 				input(type='submit', value='Display')
+			form()
+				textarea(name='ta_demo', rows='4')

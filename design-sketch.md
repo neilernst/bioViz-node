@@ -11,6 +11,7 @@ This app will show a brain divided into regions. Each region will display the ex
 * http://raphaeljs.com/ - JS library for SVG
 * https://github.com/felixge/node-mysql - MySQL driver
 * http://keith-wood.name/svgRef.html
+* http://www.hacksparrow.com/express-js-tutorial.html this is a good site for understanding how Express is laid out.
 
 ## Data storage
 * Started with MySQL or SQLITE but all the joins seem silly to me. Data started with Excel spreadsheet, so that structure seems reasonable. 
