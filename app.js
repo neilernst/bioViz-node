@@ -49,6 +49,18 @@ app.get('/autocomplete', function(req, res){
   });
 });
 
+app.post('/color', function(req, res) {
+    //console.log(JSON.stringify(req.body));
+    //console.log('req.body', req.body.gene);
+    db.findAllExpression(req.body.gene);
+});
+
+app.get('/raph', function(req, res){
+  res.render('raph-test', {
+    title: 'Raphael Testing'
+  });
+});
+
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });

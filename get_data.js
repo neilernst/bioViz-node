@@ -5,8 +5,7 @@ var experiment = 1; //'HU 133' or 2 'H6-133_plus2
 var chip = 28; //other choice is '29'
 
 
-function fetchGenes(partial, req, res) {
-	//db.serialize(function() {
+function fetchGenes(partial,req, res) {
 	var data = new Array();
 	//console.log(res);
 	console.log("using " + partial) ;
@@ -34,12 +33,27 @@ function findExpression(symbol, code) {
 	 				regions.common_name FROM genes, samples, regions WHERE genes.id = samples.gene_id  \
 	 				AND regions.id = samples.region_id AND genes.known_gene_symbol = $symbol AND \
 	 				regions.brodmann_code = $code AND genes.chip_id = $chip AND samples.experiment_id = $exp";
-	 db.each(query, { $symbol: "CALU", $code: "BA20", $chip: chip, $exp: experiment}, function(err, row) {  
+	 db.each(query, { $symbol: "CALU", $code: "BA20", $chip: chip, $exp: "HU 133"}, function(err, row) {  
 	    console.log(row.fragment_name + " - " + row.known_gene_symbol + ": " + row.mean_expression_level);
 	  });
 	
 	});
 	
+	db.close();
+}
+
+function findAllExpression(symbol) { //find all expression levels for a given gene id
+	db.serialize(function() {
+	 var query = "SELECT regions.brodmann_code, samples.mean_expression_level FROM genes, samples, regions \
+	 			WHERE genes.id = samples.gene_id  	AND regions.id = samples.region_id \
+	 			AND genes.known_gene_symbol = $symbol AND genes.chip_id = $chip AND samples.experiment_id = $exp";
+	 db.all(query, { $symbol: symbol, $chip: 28, $exp: 1}, function(err, row) {  //platform HU 133
+	 	if (err) {
+	 		throw err;
+		}
+	 	console.log(row);//row.brodmann_code + " - " + row.mean_expression_level);
+	});	
+	});
 	db.close();
 }
 
@@ -56,3 +70,4 @@ function size(to_count) {
 exports.size = size;
 exports.fetchGenes = fetchGenes;
 exports.findExpression = findExpression;
+exports.findAllExpression = findAllExpression
