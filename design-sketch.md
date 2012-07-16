@@ -16,18 +16,19 @@ This app will show a brain divided into regions. Each region will display the ex
 ## Data storage
 * Started with MySQL or SQLITE but all the joins seem silly to me. Data started with Excel spreadsheet, so that structure seems reasonable. 
 
-Data is grouped 
-* Platform (Hu133/H6-133_plus2)
-	* Chip
-		* Fragment ID 
-		* Fragment Name 
-		* Sequence Name
-		* Known Gene Symbol
-		* Brain Area (this is the brain)
-			* N Subjects
-			* % Subjects Gene Present
-			* Mean Expression Level
-			* StdDev of Mean
+Data is grouped ... each hierarchy represents a 1-many rel.
+*Experiment (1/2)
+	* Platform (Hu133/H6-133_plus2)
+		* Chip (28/29)
+			* Known Gene Symbol (CALU...)
+			* Sequence Name (calumenin...)
+				* Fragment ID 
+				* Fragment Name (200755_s_at...)
+				* Brain Area (Hippocampus,BA8 etc)
+					* N Subjects
+					* % Subjects Gene Present
+					* Mean Expression Level
+					* StdDev of Mean
 		
 Now what I want to show is, for a gene/fragment, in the given brain area, what is the MEL of that gene? 
 
@@ -41,8 +42,10 @@ What is the MEL for RPL28 in BA89, chip 28?
 	QUERY: 
 	select genes.known_gene_symbol, samples.mean_expression_level, regions.common_name from genes,samples, regions where genes.id = samples.gene_id and regions.id = samples.region_id and genes.known_gene_symbol = "DDX48" and regions.brodmann_code = 'Nucleus_accumbens';
 	
-	# June 18 
-	Using Stylus and Jade for output, with Express as web framework. 
-	Stylus compiles a .styl file into CSS. You refer to the CSS that gets compiled in the Jade file.
-	In Jade the layout.jade file is the 'main' function, that gets the value of variables. Typically 'body' variable gets the value of "page.jade".
+# June 18 
+Using Stylus and Jade for output, with Express as web framework. 
+Stylus compiles a .styl file into CSS. You refer to the CSS that gets compiled in the Jade file.
+In Jade the layout.jade file is the 'main' function, that gets the value of variables. Typically 'body' variable gets the value of "page.jade".
 	
+# July 10
+Realizing that what we really need is the granularity of 'fragment_id', as each Gene (CALU) is then divided into fragments, which have an associated expression. So the form should hav eanother search function, "list all fragments" from this gene.
