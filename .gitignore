@@ -1,7 +1,4 @@
-
 toxml.xml
-
-
 testxml.xml
 node_modules/.bin/
 bioviz.db
@@ -11,3 +8,5 @@ development-bundle/
 foo/node_modules
 node_modules
 bioviz.sublime-*
+.tags
+.tags_sorted_by_file
