@@ -1,21 +1,13 @@
-html
-	script(src="javascripts/auto.js")
-	script(src="javascripts/brain.js")
-	script(src="javascripts/brain-json.js")
-	script(src="javascripts/jquery.svg.js")
-	script(src="javascripts/raphael-min.js")
-	<style type="text/css">@import "stylesheets/jquery.svg.css";</style> 
-	//script(type="text/javascript", src="javascripts/jquery-1.7.2.min.js")
-
-	body
-		div#brain-img
-		div.ui-widget
-			form(action='/color',method='post')
-				label Genes:
-				input(name='gene')#genes
-				input(type='submit', value='Display')
-			form()
-				label Associated fragments:
-				textarea(name='ta_demo', rows='4')
-				
-				label#hint Select a fragment to display on the image above.
+h3
+    div#brain-img
+    div.ui-widget
+        form()
+            label Genes:
+            input(name='gene')#genes
+            button(type='button', value='Update Fragments')#btnUpdate Update
+            label Associated fragments:
+            select(multiple)#frags
+            label#hint Select a fragment to display on the image above.
+    script(src="javascripts/auto.js")
+    script(src="javascripts/brain-json.js")
+    script(src="javascripts/brain.js")

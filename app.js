@@ -4,8 +4,9 @@
 
 var express = require('express')
   , routes = require('./routes');
-var db = require("./get_data");
+var db = require("./public/javascripts/get_data");
 var querystring = require("querystring");
+//var d3 = require("d3");
 
 var app = module.exports = express.createServer();
 
@@ -38,27 +39,21 @@ app.get('/', function(req, res){
 });
 
 app.get('/gene', function(req, res){
-  console.log("Handling gene request");
   db.fetchGenes(req.query.term,req, res); //Asynchronous!
 });
 
 app.get('/autocomplete', function(req, res){
-  console.log("Handling 'autocomplete'.");
-  res.render('autocomplete', {
+    res.render('autocomplete', {
     title: 'Show Brain Region Expression Data'
   });
 });
 
 app.post('/color', function(req, res) {
-    //console.log(JSON.stringify(req.body));
-    //console.log('req.body', req.body.gene);
-    db.findAllExpression(req.body.gene);
+    db.getFrag(req.body.gene,req, res);
 });
 
-app.get('/raph', function(req, res){
-  res.render('raph-test', {
-    title: 'Raphael Testing'
-  });
+app.post('/mel', function(req, res){
+    db.findAllExpression(req.body.fragid, req, res);
 });
 
 app.listen(3000, function(){
