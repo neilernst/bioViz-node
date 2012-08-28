@@ -1,12 +1,23 @@
-var paper = Raphael(document.getElementById("brain-img"), 540, 400);
+var paper = Raphael(document.getElementById("brain-img"), 1440, 400);
 var region_options = {stroke: "black"}; // fill: "black",
 var region_set = paper.set();
-for(path in regions){
+var rear_region_set = paper.set();
+
+for(path in regions) {
     var newpath = paper.path(regions[path]);
-    newpath.attr(region_options)
+    newpath.attr(region_options);
     newpath.id = path;
     region_set.push(newpath);
 }
+for (path in rear_regions) {
+  var newpath = paper.path(rear_regions[path]);
+  newpath.attr(region_options);
+  newpath.id = path;
+  rear_region_set.push(newpath);
+}
+
+// move the rear brain stuff
+rear_region_set.transform("t600,0s1.6,1.6,0,0");
 var rectset = paper.set();
 for (i = 0; i < rects.length; i++) {
     var newrect = paper.rect(rects[i][1], rects[i][2], rects[i][3],rects[i][4]);
@@ -40,7 +51,7 @@ var updateRegions = function(data) {
                     area = 'BA8';
                 }
                 console.log(area);
-                var area_obj = paper.getById(area)
+                var area_obj = paper.getById(area);
                 if (area_obj !== null) {
                     area_obj.attr({fill:colors[i]});
                 }
