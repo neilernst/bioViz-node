@@ -17,7 +17,7 @@ for (path in rear_regions) {
 }
 
 // move the rear brain stuff
-rear_region_set.transform("t600,0s1.6,1.6,0,0");
+rear_region_set.transform("t550,0s1.6,1.65,0,0");
 var rectset = paper.set();
 for (i = 0; i < rects.length; i++) {
     var newrect = paper.rect(rects[i][1], rects[i][2], rects[i][3],rects[i][4]);
@@ -25,6 +25,7 @@ for (i = 0; i < rects.length; i++) {
     newrect.id = rects[i][0];
     rectset.push(newrect);
 }
+
 var labelset = paper.set();
 for (var label in labels) {
     var newlabel = paper.text(labels[label][0], labels[label][1], labels[label][2]);
@@ -35,7 +36,9 @@ labelset.attr({"font-size": 13, "font-family": "Helvetica"});
 // var thisPath = paper.getById('Amygdala');
 // thisPath.attr({fill: "rgb(0,0,255)", opacity: .75});
 
-
+for( var line in lines) {
+  var newline = paper.path(lines[line]);
+}
 var updateRegions = function(data) {
    var vals = new Array();
    for (area in data) {
@@ -60,3 +63,9 @@ var updateRegions = function(data) {
    }
 }
 
+// debug positioning
+document.onmousedown = function(e)
+{
+    var x = e.pageX;
+    var y = e.pageY;
+console.log(x,y)};
