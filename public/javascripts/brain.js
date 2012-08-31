@@ -42,21 +42,24 @@ for( var line in lines) {
 var updateRegions = function(data) {
    var vals = new Array();
    for (area in data) {
-       //console.log(area + ": " + data[area]);
+        //console.log(area + ": " + data[area]);
        vals.push(data[area]);
    }
    var bins = d3.layout.histogram().bins(5)(vals);
    var colors = ['#6996D3', '#0F4FA8', '#FF7373', '#FF4040', '#A60000' ]; // lt blue, dk blue, lt red, mod red, dark red.
    for (area in data) {
         for (i = 0; i < bins.length; i++) {
-            if(jQuery.inArray(data[area], bins[i])) {
+            if(jQuery.inArray(data[area], bins[i]) != -1) {
                 if(area === 'BA89') {
                     area = 'BA8';
                 }
-                console.log(area);
                 var area_obj = paper.getById(area);
                 if (area_obj !== null) {
-                    area_obj.attr({fill:colors[i]});
+                  area_obj.attr({fill:colors[i]});
+                }
+                var area_rear = paper.getById(area+'R');
+                if (area_rear !== null) {
+                  area_rear.attr({fill:colors[i]});
                 }
             }
         }
@@ -64,8 +67,8 @@ var updateRegions = function(data) {
 }
 
 // debug positioning
-document.onmousedown = function(e)
-{
-    var x = e.pageX;
-    var y = e.pageY;
-console.log(x,y)};
+// document.onmousedown = function(e)
+// {
+//     var x = e.pageX;
+//     var y = e.pageY;
+// console.log(x,y);};
