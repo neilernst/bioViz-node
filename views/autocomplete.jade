@@ -1,13 +1,15 @@
 h3
     div#brain-img
     div.ui-widget
-        form()
-            label Genes:
-            input(name='gene')#genes
-            button(type='button', value='Update Fragments')#btnUpdate Update
-            label Associated fragments:
-            select(multiple)#frags
-            label#hint Select a fragment to display on the image above.
+        div#guide
+           label#hint Select a gene and then a fragment to display on the image above.
+        div#genes-ui
+           label Named Gene:
+           input(name='gene')#genes
+           button(type='button', value='Update Fragments')#btnUpdate Update Fragments
+        div#frag-ui
+           label Associated fragments:
+           select(multiple)#frags
     script(src="javascripts/auto.js")
     script(src="javascripts/brain-json.js")
     script(src="javascripts/brain.js")
