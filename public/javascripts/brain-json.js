@@ -68,15 +68,15 @@ var labels = {
 	label312: [231,140,"312"],
 	label7: [333,86,"7"],
 	label41: [211,229,"41"],
-	label42: [229,244,"42"],
+	label42: [229,242,"42"],
 	label40: [256,171,"40"],
 	label22: [171,254,"22"],
 	label20: [186,338,"20"],
 	label38: [117,275,"38"],
-	label43: [130,238,"43"],
-	label43A: [185,220,"43A"],
-	label47: [80,249,"47"],
-	label11: [17,240,"11"],
+	label43: [130,236,"43"],
+	label43A: [185,218,"43A"],
+	label47: [80,245,"47"],
+	label11: [26,240,"11"],
 	label45: [87,214,"45"],
 	label10: [20,170,"10"],
 	label44: [128,188,"44"],
@@ -117,14 +117,14 @@ var labels = {
 	label12R: [670,205, "12"],
 	label5R: [854,70,"5"],
 	label25R: [697,212, "25"],
-	labelUNKR: [752,111, "?"],
+	labelCC: [752,111, "CC"],
 
 	// boxes
 	labelHippocampus: [500,129,"Hippocampus"],
 	labelNucleus: [500,31,"Nucleus"],
 	labelAccumbens: [500,41,"Accumbens"],
 	labelCerebellum: [500,86,"Cerebellum"],
-	labelAmygdala: [500,188,"Amygdala"]
+	labelAmygdala: [500,186,"Amygdala"]
 	};
 
 var lines = {
