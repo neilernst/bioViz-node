@@ -1,6 +1,7 @@
 //var sqlite3 = require('sqlite3').verbose();
 var pg = require('pg');
-var conString = "postgres://nernst@localhost:5432/bioviz";
+//var conString = "postgres://nernst@localhost:5432/bioviz";
+var conString = process.env.DATABASE_URL;
 //var db = new sqlite3.Database('bioviz.db');
 // make some assumptions about the data. For now.
 var experiment = 1; //'HU 133' or 2 'H6-133_plus2
