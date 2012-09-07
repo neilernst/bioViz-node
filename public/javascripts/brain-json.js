@@ -55,6 +55,9 @@ var rects  = [
 	["Cerebellum",460,60 , 80, 45],
 	["Hippocampus",460,110,80,  45] ];
 
+var legend = [
+	["high"]
+];
 
 var labels = {
 	label39: [323,182,"39"],

@@ -1,53 +1,69 @@
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('bioviz.db');
+//var sqlite3 = require('sqlite3').verbose();
+var pg = require('pg');
+var conString = "postgres://nernst@localhost:5432/bioviz";
+//var db = new sqlite3.Database('bioviz.db');
 // make some assumptions about the data. For now.
 var experiment = 1; //'HU 133' or 2 'H6-133_plus2
 var chip = 28; //other choice is '29'
 
 
 function fetchGenes(partial,req, res) {
-    var data = new Array();
-    var query = "SELECT distinct(known_gene_symbol) FROM genes WHERE genes.known_gene_symbol LIKE $partial";
-    db.all(query, { $partial: partial + '%'}, function(err, rows) {
+    pg.connect(conString, function(err, client) {
+        var query = "SELECT distinct(known_gene_symbol) FROM genes WHERE genes.known_gene_symbol ILIKE $1";
+        //var query = "SELECT known_gene_symbol from genes";
+        partial = partial + '%';
+        var data = [];
         if (err) {
-            throw err;
+            console.log(err);
         }
-        for (i = 0; i < rows.length; i++) {
-            data.push(rows[i].known_gene_symbol);
-        }
-    json_fmt  = JSON.stringify(data);
-    res.send(json_fmt); });
+        client.query(query, [partial],  function(err, result) {
+            if (err) {
+                console.log(err);
+            }
+            //console.log(result);
+            for (i = 0; i < result.rows.length; i++) {
+                data.push(result.rows[i].known_gene_symbol);
+            }
+
+            json_fmt  = JSON.stringify(data);
+            res.send(json_fmt);
+        });
+    });
 }
 
 //for the given gene name, return acceptable gene_fragments.
 function getFrag(gene, req, res) {
-    var data = new Array();
-    var query = "SELECT DISTINCT(fragment_name) FROM genes WHERE known_gene_symbol LIKE $gene";
-    db.all(query, { $gene: gene}, function(err, rows) {
-        if (err) {
-            throw err;
-        }
-        for (i = 0; i < rows.length; i++) {
-            data.push(rows[i].fragment_name);
-        }
-        res.send(JSON.stringify(data));
+    pg.connect(conString, function(err, client) {
+        var data = [];
+        var query = "SELECT DISTINCT(fragment_name) FROM genes WHERE known_gene_symbol ILIKE $1";
+        client.query(query, [gene],  function(err, result) {
+            if (err) {
+                throw err;
+            }
+            for (i = 0; i < result.rows.length; i++) {
+                data.push(result.rows[i].fragment_name);
+            }
+            res.send(JSON.stringify(data));
+        });
     });
 }
 
 function findAllExpression(frag, req, res) { //find all expression levels for a given gene id
-    var data = {};
-    var query = "SELECT regions.brodmann_code, samples.mean_expression_level FROM genes, samples, regions \
-                WHERE genes.id = samples.gene_id    AND regions.id = samples.region_id \
-                AND genes.fragment_name = $frag AND genes.chip_id = $chip AND samples.experiment_id = $exp";
-     db.all(query, { $frag: frag, $chip: 28, $exp: 1}, function(err, rows) {  //platform HU 133
-        if (err) {
-            throw err;
-        }
-        //console.log("Found matches: " + size(rows));
-        for (i = 0; i < rows.length; i++) {
-            data[(rows[i].brodmann_code).toString()] = rows[i].mean_expression_level;
-        }
-        res.send(JSON.stringify(data));
+    pg.connect(conString, function(err, client) {
+        var data = {};
+        var query = "SELECT regions.brodmann_code, samples.mean_expression_level FROM genes, samples, regions \
+                    WHERE genes.id = samples.gene_id    AND regions.id = samples.region_id \
+                    AND genes.fragment_name = $1 AND genes.chip_id = $2 AND samples.experiment_id = $3";
+        client.query(query, [frag, 28,  1], function(err, result) {  //platform HU 133
+            if (err) {
+                throw err;
+            }
+            //console.log("Found matches: " + size(rows));
+            for (i = 0; i < result.rows.length; i++) {
+                data[(result.rows[i].brodmann_code).toString()] = result.rows[i].mean_expression_level;
+            }
+            res.send(JSON.stringify(data));
+        });
     });
 }
 
