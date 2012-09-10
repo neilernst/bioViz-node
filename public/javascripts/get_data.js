@@ -9,6 +9,7 @@ var chip = 28; //other choice is '29'
 
 
 function fetchGenes(partial,req, res) {
+    console.log(conString);
     pg.connect(conString, function(err, client) {
         var query = "SELECT distinct(known_gene_symbol) FROM genes WHERE genes.known_gene_symbol ILIKE $1";
         //var query = "SELECT known_gene_symbol from genes";

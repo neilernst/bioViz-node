@@ -49,3 +49,6 @@ In Jade the layout.jade file is the 'main' function, that gets the value of vari
 	
 # July 10
 Realizing that what we really need is the granularity of 'fragment_id', as each Gene (CALU) is then divided into fragments, which have an associated expression. So the form should hav eanother search function, "list all fragments" from this gene.
+
+# Migrating to Heroku
+Heroku's pg database only allows for 10k rows, so I am deleting experiement 2 and chip 29. I am also removing genes that start with letters greater than E.
