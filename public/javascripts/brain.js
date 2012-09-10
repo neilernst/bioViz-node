@@ -2,6 +2,7 @@ var paper = Raphael(document.getElementById("brain-img"), 1440, 400);
 var region_options = {stroke: "black"}; // fill: "black",
 var region_set = paper.set();
 var rear_region_set = paper.set();
+var path;
 
 for(path in regions) {
     var newpath = paper.path(regions[path]);
@@ -39,10 +40,12 @@ labelset.attr({"font-size": 13, "font-family": "Helvetica"});
 for( var line in lines) {
   var newline = paper.path(lines[line]);
 }
+
 var updateRegions = function(data) {
-   var vals = new Array();
+   var vals = [],
+   area;
    for (area in data) {
-        //console.log(area + ": " + data[area]);
+        console.log(area + ": " + data[area]);
        vals.push(data[area]);
    }
    var bins = d3.layout.histogram().bins(5)(vals);
@@ -64,7 +67,7 @@ var updateRegions = function(data) {
             }
         }
    }
-}
+};
 
 // debug positioning
 // document.onmousedown = function(e)

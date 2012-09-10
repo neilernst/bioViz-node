@@ -52,16 +52,16 @@ function getFrag(gene, req, res) {
 function findAllExpression(frag, req, res) { //find all expression levels for a given gene id
     pg.connect(conString, function(err, client) {
         var data = {};
-        var query = "SELECT regions.brodmann_code, samples.mean_expression_level FROM genes, samples, regions \
+        var query = "SELECT regions.brodmann_code, samples.mel_rand FROM genes, samples, regions \
                     WHERE genes.id = samples.gene_id    AND regions.id = samples.region_id \
                     AND genes.fragment_name = $1 AND genes.chip_id = $2 AND samples.experiment_id = $3";
         client.query(query, [frag, 28,  1], function(err, result) {  //platform HU 133
             if (err) {
                 throw err;
             }
-            //console.log("Found matches: " + size(rows));
+            //console.log("Found matches: " + size(result.rows));
             for (i = 0; i < result.rows.length; i++) {
-                data[(result.rows[i].brodmann_code).toString()] = result.rows[i].mean_expression_level;
+                data[(result.rows[i].brodmann_code).toString()] = result.rows[i].mel_rand;
             }
             res.send(JSON.stringify(data));
         });
