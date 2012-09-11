@@ -32,17 +32,11 @@ app.configure('production', function(){
 
 // Routes
 
-app.get('/', function(req, res){
-  res.render('index', {
-    title: 'Home'
-  });
-});
-
 app.get('/gene', function(req, res){
   db.fetchGenes(req.query.term,req, res); //Asynchronous!
 });
 
-app.get('/autocomplete', function(req, res){
+app.get('/', function(req, res){
     res.render('autocomplete', {
     title: 'Show Brain Region Expression Data'
   });
